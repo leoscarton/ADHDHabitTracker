@@ -10,7 +10,7 @@ logging.basicConfig(level=logging.INFO)
         # Separate class for handling CSV operations
 ##########################################################################
 
-
+'''
 class CSVHandler:
     def __init__(self, filename:str = "habits.csv", df:pd.DataFrame = None, columns:list = None):
         # Storing the filename and DataFrame
@@ -58,7 +58,7 @@ class CSVHandler:
             self._dataframe = pd.DataFrame(columns=['Name', 'Type', 'Weekly Frequency', 'Instances'])
         except Exception as e:
             logging.error(f"An error occurred while loading the file '{self._filename}': {e}")
-        
+'''
 
 ##########################################################################
             # Habit and HabitInstance Classes
@@ -75,6 +75,19 @@ class HabitDataFrame():
         new_habit_df["Instances"] = new_habit_df["Instances"].fillna(0).astype(int)
 
         self._habits = pd.concat([self._habits, new_habit_df], ignore_index=True, axis=0)
+
+class HabitInstanceDataFrame():
+    def __init__(self):
+        self._habit_instance_columns = ['Name', 'Group', 'Date', 'Status']
+        self._habit_instances = pd.DataFrame(columns=self._habit_instance_columns)
+
+    def add_habit_instance(self, new_instance:dict):
+        new_instance_df = pd.DataFrame([new_instance])
+        new_instance_df = new_instance_df.reindex(columns=self._habit_instance_columns)
+
+        new_instance_df['Status'] = new_instance_df['Status'].fillna(False)
+
+        self._habit_instances = pd.concat([self._habit_instances, new_instance_df], ignore_index=True, axis=0)
 
 '''
 class Habit():
