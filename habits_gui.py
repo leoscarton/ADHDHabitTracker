@@ -276,7 +276,7 @@ class MainWindow(QMainWindow):
         super().__init__()
         
         # Setting up the main window name and dimensions
-        self.setWindowTitle("Habit Tracker by Leonardo Scarton")
+        self.setWindowTitle("ADHD Habit Tracker by Leonardo Scarton")
         self.setGeometry(100, 100, 800, 600)
 
         # Initializing the vertical layout for the main window
