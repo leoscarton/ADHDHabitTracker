@@ -3,4 +3,4 @@ __pycache__
 habits.csv
 habit_instances.csv
 requirements.txt
-habit_tracker_ui/
+adhd_habit_tracker/
