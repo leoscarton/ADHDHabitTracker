@@ -70,7 +70,7 @@ class HabitDataFrame():
         self._habits = pd.DataFrame(columns=self._habit_columns)
 
     def add_habit(self, new_habit:dict):
-        new_habit_df = pd.DataFrame(new_habit)
+        new_habit_df = pd.DataFrame([new_habit])
         new_habit_df = new_habit_df.reindex(columns=self._habit_columns)
         new_habit_df["Instances"] = new_habit_df["Instances"].fillna(0).astype(int)
 
