@@ -1,11 +1,4 @@
 __pycache__/*.pyc
 __pycache__
-habits.csv
-habit_instances.csv
 adhd_habit_tracker/
-main2.py
-data_analysis.py
-habits_gui.py
-habits_tables.py
-main.py
 old_code/
