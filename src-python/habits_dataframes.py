@@ -12,6 +12,9 @@ class HabitDataFrame():
         new_habit_df["Instances"] = new_habit_df["Instances"].fillna(0).astype(int)
 
         self._habits = pd.concat([self._habits, new_habit_df], ignore_index=True, axis=0)
+    
+    def remove_habit(self, habit_to_remove:str):
+        self._habits.drop([self._habits['Name'] == habit_to_remove], axis=0, inplace=True)
 
 class HabitInstanceDataFrame():
     def __init__(self):
