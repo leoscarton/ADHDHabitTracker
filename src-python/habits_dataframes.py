@@ -3,7 +3,7 @@ import numpy as np
 
 class HabitDataFrame():
     def __init__(self):
-        self._habit_columns = ['Name', 'Group', 'Frequency (Number)', 'Frequency (Type)', 'Instances']
+        self._habit_columns = ['Name', 'Group', 'Frequency (Number)', 'Frequency (Type)', 'Instances', 'Current Streak', 'Maximum Streak']
         self._habits = pd.DataFrame(columns=self._habit_columns)
 
     def add_habit(self, new_habit:dict):
@@ -25,3 +25,11 @@ class HabitInstanceDataFrame():
         new_instance_df['Status'] = new_instance_df['Status'].fillna(False)
 
         self._habit_instances = pd.concat([self._habit_instances, new_instance_df], ignore_index=True, axis=0)
+
+class EnvironmentConditions():
+    def __init__(self):
+        self._env_conditions = {
+            "Emotional" : [],
+            "Weather" : [],
+            "Other" : []
+        }
