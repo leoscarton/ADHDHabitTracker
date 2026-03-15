@@ -1,31 +1,55 @@
 import pandas as pd
 import numpy as np
+from dataclasses import dataclass, field
+from typing import Dict
 
-class Habit():
+@dataclass
+class HabitLog:
+    date:pd.Timestamp
+    status:bool = False
+
+    def __init__(self, timestamp:pd.Timestamp):
+        self.date = timestamp
+
+    def invert_status(self):
+        self.status = not self.status
+
+@dataclass
+class Habit:
+    name:str
+    group:str
+    frequency_number:int = 0
+    frequency_type:str = "Week"
+    log_count:int = 0
+    current_streak:int = 0
+    max_streak:int = 0
+    habit_logs: Dict[pd.Timestamp, HabitLog] = field(default_factory=dict)
+
     def __init__(self, new_habit:dict):
-        self._habit_attributes = ['Name', 'Group', 'Frequency (Number)', 'Frequency (Type)', 'Instances', 'Current Streak', 'Maximum Streak']
-
-        self._habit_data = {k: new_habit.get(k) for k in self._habit_attributes}
-
-        #self._habit_instance_attributes = ['Name', 'Group', 'Date', 'Status']
-        self._habit_log_attributes = ['Date', 'Status']
+        self.name = new_habit.get('Name')
+        self.group = new_habit.get('Group')
+        self.frequency_number = new_habit.get('Frequency (Number)', 0)
+        self.frequency_type = new_habit.get('Frequency (Type)', 'Week')
+        self.log_count = new_habit.get('Log Count', 0)
         
 
-    def autofill_incomplete_habit(self):
-        for k in self._habit_data.keys():
-            if k not in ['Name', 'Group', 'Frequency (Type)']:
-                self._habit_data[k] = 0
+    def add_new_habit_log(self, new_log_timestamp:pd.Timestamp):
+        if new_log_timestamp in self.habit_logs.keys():
+            raise AssertionError("There is already another habit scheduled for this date and time.")
+        else:
+            self.habit_logs.setdefault(new_log_timestamp, HabitLog(new_log_timestamp))
 
-class HabitManager():
-    def __init__(self):
-        self._habit_groups = {}
+
+@dataclass
+class HabitManager:
+    habit_groups:Dict[str, Dict[str, Habit]] = field(default_factory=dict)
 
     def add_new_habit(self, new_habit:dict, group:str):
         habit = Habit(new_habit=new_habit)
         
-        self._habit_groups.setdefault(group, {})
-        self._habit_groups[group].setdefault(habit['Name'], habit)
+        self.habit_groups.setdefault(group, {})
+        self.habit_groups[group].setdefault(habit['Name'], habit)
 
     def remove_habit(self, habit_name:str, habit_group:str):
-        if habit_group in self._habit_groups.keys():
-            self._habit_groups[habit_group].pop(habit_name, None)
+        if habit_group in self.habit_groups.keys():
+            self.habit_groups[habit_group].pop(habit_name, None)
