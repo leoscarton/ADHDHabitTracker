@@ -35,6 +35,12 @@ The main difference is that the application will (with the user's consent) reque
 
 **NOTE:** Each tool's version will be provided in the future.
 
+## Roadmap
+
+1. Make a minimal version that allows adding and updating habits with local storage;
+2. Add basic data analysis funcionalities;
+3. Add machine learning functionalities.
+
 ------------------------------------------------------------------------------------
 
 Further details will be announced soon.
