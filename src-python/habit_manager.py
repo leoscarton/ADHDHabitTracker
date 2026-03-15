@@ -1,11 +1,37 @@
 import pandas as pd
 from dataclasses import dataclass, field
 from typing import Dict, List
+from enum import StrEnum
+from pydantic import Field
+
+class Weather(StrEnum):
+    sunny = "Sunny"
+    cloudy = "Cloudy"
+    rainy = "Rainy"
+
+class PhysicalHealthStatus(StrEnum):
+    excellent = "Excellent"
+    good = "Good"
+    regular = "Regular"
+    bad = "Bad"
+    terrible = "Terrible"
+
+@dataclass
+class EnvironmentalFactors:
+    energy:int = Field(ge=0, le=100)
+    anxiety:int = Field(ge=0, le=100)
+    weather:Weather = "Sunny"
+    physical_health_status:PhysicalHealthStatus = "Good"
+    health_conditions:List[str] = field(default_factory=list)
+    other:List[str] = field(default_factory=list)
+
+    
 
 @dataclass
 class HabitLog:
     date:pd.Timestamp
     status:bool = False
+    env_factors:EnvironmentalFactors
 
     def __init__(self, timestamp:pd.Timestamp):
         self.date = timestamp
