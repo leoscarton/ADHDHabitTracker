@@ -1,6 +1,6 @@
 import pandas as pd
 from dataclasses import dataclass, field
-from typing import Dict
+from typing import Dict, List
 
 @dataclass
 class HabitLog:
@@ -22,7 +22,7 @@ class Habit:
     log_count:int = 0
     current_streak:int = 0
     max_streak:int = 0
-    habit_logs: Dict[pd.Timestamp, HabitLog] = field(default_factory=dict)
+    habit_logs: List[HabitLog] = field(default_factory=list)
 
     def __init__(self, new_habit:dict):
         self.name = new_habit.get('Name')
