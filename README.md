@@ -4,7 +4,7 @@ A WIP for a simple Habit Tracker focused on common struggles for people with Att
 
 ## Problem
 
-Many people with ADHD and other conditions (namely, Depression, Anxiety, Autism Spectrum Disorder and so on) suffer with *Executive Dysfunction*, a range of deficits in the so called Executive Functions of the human brain.
+Many people with ADHD and other conditions (namely, Depression, Anxiety, Autism Spectrum Disorder and so on) suffer with **Executive Dysfunction**, a range of deficits in the so called Executive Functions of the human brain.
 In summary, these functions are the reason humans can, amongst other things, control their impulses and emotions, focus on demanding tasks, plan ahead, manage time and complex tasks.
 An impairment in Executive Functions make it harder for individuals to commit to habit building and long-term goals in general.
 
@@ -33,7 +33,7 @@ The main difference is that the application will (with the user's consent) reque
 - Desktop Runtime: Tauri v2
 - Packaging of Python Script: PyInstaller
 
-*NOTE:* Each tool's version will be provided in the future.
+**NOTE:** Each tool's version will be provided in the future.
 
 ------------------------------------------------------------------------------------
 
