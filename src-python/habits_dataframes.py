@@ -15,6 +15,7 @@ class HabitDataFrame():
     
     def remove_habit(self, habit_to_remove:str):
         self._habits.drop([self._habits['Name'] == habit_to_remove], axis=0, inplace=True)
+        self._habits.reset_index()
 
 class HabitInstanceDataFrame():
     def __init__(self):
