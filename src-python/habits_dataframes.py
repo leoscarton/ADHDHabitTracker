@@ -30,6 +30,10 @@ class HabitInstanceDataFrame():
 
         self._habit_instances = pd.concat([self._habit_instances, new_instance_df], ignore_index=True, axis=0)
 
+    def remove_habit_instance(self, instance_to_remove):
+        self._habit_instances.drop([(self._habit_instances['Name'] == instance_to_remove['Name']) & (self._habit_instances['Date'] == instance_to_remove['Date'])])
+        self._habit_instances.reset_index()
+
 class EnvironmentConditions():
     def __init__(self):
         self._env_conditions = {
